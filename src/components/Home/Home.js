@@ -1,5 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import Turismo from '../Turismo/Turismo';
+
 import './Home.css';
 
 const Home = () => {
@@ -10,6 +12,7 @@ const Home = () => {
         <Typography variant="h2">Accesorios Gomez</Typography>
         <Typography variant="h3">Todo en estilo que necesitas para tus viajes</Typography>
       </Box>
+      <Turismo />
     </>
   );
 }
