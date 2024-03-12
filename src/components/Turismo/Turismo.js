@@ -8,17 +8,21 @@ import './Turismo.css';
 
 const Turismo = () => {
   const getTouristicAttraction = () => {
-    console.log('OKOKOKO')
     axios.get('https://api-colombia.com/api/v1/TouristicAttraction').then((resp) => {
-      console.log(resp.data)
       setTouristicAtraccions(resp.data);
-    });
+    }).catch((error) => {
+      setError('No se encuentra disponible la información')
+      setTouristicAtraccions([]);
+    });;
   };
 
   const searchTouristicAttraction = (text) => {
     if (text.length >= 4) {
       axios.get(`https://api-colombia.com//api/v1/TouristicAttraction/search/${text}`).then((resp) => {
         setTouristicAtraccions(resp.data);
+      }).catch((error) => {
+        setTouristicAtraccions([]);
+        setError('No se encuentra informaciön con ese criterio de busqueda')
       });
     }
   };
@@ -35,6 +39,7 @@ const Turismo = () => {
 
   const [touristicAtraccions, setTouristicAtraccions] = useState([]);
   const [keyword, setKeyWord] = useState('');
+  const [error, setError] = useState('');
 
   return (
     <Box mt={4} className='turisticos'>
@@ -68,7 +73,7 @@ const Turismo = () => {
               />
             ))) : null}
         </div>
-
+        {error ? (<span>{error}</span>) : null}
       </Box>
     </Box>
   );
