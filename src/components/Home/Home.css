@@ -1,4 +1,6 @@
 .presentacion{
   text-align: center;
   padding: 100px;
+  height: 60vh;
+  overflow: scroll;
 }
