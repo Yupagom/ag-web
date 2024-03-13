@@ -10,7 +10,7 @@ const Turismo = () => {
   const getTouristicAttraction = () => {
     axios.get('https://api-colombia.com/api/v1/TouristicAttraction').then((resp) => {
       setTouristicAtraccions(resp.data);
-    }).catch((error) => {
+    }).catch(() => {
       setError('No se encuentra disponible la información')
       setTouristicAtraccions([]);
     });;
@@ -20,7 +20,7 @@ const Turismo = () => {
     if (text.length >= 4) {
       axios.get(`https://api-colombia.com//api/v1/TouristicAttraction/search/${text}`).then((resp) => {
         setTouristicAtraccions(resp.data);
-      }).catch((error) => {
+      }).catch(() => {
         setTouristicAtraccions([]);
         setError('No se encuentra informaciön con ese criterio de busqueda')
       });
@@ -73,7 +73,7 @@ const Turismo = () => {
               />
             ))) : null}
         </div>
-        {error ? (<span>{error}</span>) : null}
+        {error && (<span>{error}</span>)}
       </Box>
     </Box>
   );
